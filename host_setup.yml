@@ -1,13 +1,4 @@
-- name: Add the user 'ansible'
-  user:
-    name: ansible
-    comment: Ansible user
-    uid: 2000
-    group: dst
-    generate_ssh_key: no
-
-- name: Set authorized keys from Github
-  authorized_key:
-    user: ansible
-    state: present
-    key: https://github.com/bbc/dst-ansible/public_keys/ansible.pub
+- hosts: [mongo-int]
+  become: true
+  roles:
+  - host-setup
