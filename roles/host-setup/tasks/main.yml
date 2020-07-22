@@ -13,5 +13,3 @@
     key: '{{ item }}'
   with_file:
   - ansible.keys
-    # key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
-    # key: https://github.com/bbc/dst-ansible/blob/master/public_keys/ansible.keys
