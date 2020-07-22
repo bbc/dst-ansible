@@ -1,4 +1,4 @@
-- hosts: [mongo-int]
+- hosts: "{{ hostname }}"
   become: true
   roles:
   - host-setup
