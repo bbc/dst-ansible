@@ -10,4 +10,4 @@
   authorized_key:
     user: ansible
     state: present
-    key: https://github.com/bbc/dst-ansible/public_keys/ansible.key
+    key: https://github.com/bbc/dst-ansible/public_keys/ansible.keys
