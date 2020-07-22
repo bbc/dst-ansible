@@ -2,7 +2,7 @@
   user:
     name: ansible
     comment: Ansible user
-    uid: 2000
+    # uid: 2000
     group: dst
     generate_ssh_key: no
 
