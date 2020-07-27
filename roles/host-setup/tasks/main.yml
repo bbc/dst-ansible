@@ -1,3 +1,4 @@
+---
 - name: Add the user 'ansible'
   user:
     name: ansible

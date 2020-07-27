@@ -1,0 +1,9 @@
+---
+- name: Create Host and add to OTG MON Inventory
+  tower_host:
+    inventory: "{{ dst_inventory }}"
+    name: "{{ hostname }}"
+  register: created_host
+
+- name: Add created host to selected group
+  shell: awx host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}"
