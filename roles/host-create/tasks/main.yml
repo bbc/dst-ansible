@@ -4,7 +4,7 @@
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
     state: present
-    tower_config_file: "/home/ansible/.tower_cli.cfg"
+    # tower_config_file: "/home/ansible/.tower_cli.cfg"
     # tower_host: "https://127.0.0.1/"
     # tower_username: "admin"
     # tower_password: "WGImsEpcchMaVH2Z"
