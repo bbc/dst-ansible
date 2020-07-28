@@ -3,6 +3,8 @@
   tower_host:
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
+    state: present
+    tower_config_file: "/home/ansible/.tower_cli.cfg"
   register: created_host
 
 - name: Add created host to selected group
