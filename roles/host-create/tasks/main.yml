@@ -4,11 +4,7 @@
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
     state: present
-    # tower_config_file: "/home/ansible/.tower_cli.cfg"
-    # tower_host: "https://127.0.0.1/"
-    # tower_username: "admin"
-    # tower_password: "WGImsEpcchMaVH2Z"
   register: created_host
 
-# - name: Add created host to selected group
-#   shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
+- name: Add created host to selected group
+  shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
