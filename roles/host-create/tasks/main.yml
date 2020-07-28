@@ -3,6 +3,7 @@
   tower_host:
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
+    description: "{{ host_desc }}"
     state: present
   register: created_host
 
