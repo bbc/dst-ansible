@@ -1,5 +1,5 @@
 ---
-- name: Create Host and add to OTG MON Inventory
+- name: Create Host and add to DST Inventory
   tower_host:
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
@@ -7,5 +7,5 @@
     tower_config_file: "/home/ansible/.tower_cli.cfg"
   register: created_host
 
-- name: Add created host to selected group
-  shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
+# - name: Add created host to selected group
+#   shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
