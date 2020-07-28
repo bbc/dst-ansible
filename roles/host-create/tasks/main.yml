@@ -1,9 +1,14 @@
 ---
-- name: Create Host and add to OTG MON Inventory
-  tower_host:
-    inventory: "{{ dst_inventory }}"
-    name: "{{ hostname }}"
-  register: created_host
+- name: Add host to group 'just_created' with variable foo=42
+  add_host:
+    name: '{{ hostname }}'
+    groups: '{{ selected_group }}'
 
-- name: Add created host to selected group
-  shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
+# - name: Create Host and add to OTG MON Inventory
+#   tower_host:
+#     inventory: "{{ dst_inventory }}"
+#     name: "{{ hostname }}"
+#   register: created_host
+
+# - name: Add created host to selected group
+#   shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
