@@ -6,4 +6,4 @@
   register: created_host
 
 - name: Add created host to selected group
-  shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}"
+  shell: tower-cli host associate  --host "{{ created_host.id }}" --group "{{ selected_group }}" --insecure
