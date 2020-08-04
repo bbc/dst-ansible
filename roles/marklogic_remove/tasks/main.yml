@@ -1,0 +1,36 @@
+- name: "Check if MarkLogic Service Exists"
+  stat: 
+    path: /etc/init.d/MarkLogic
+  register: service_status
+
+- name: "Stop MarkLogic Service"
+  become: yes
+  service: 
+    name: MarkLogic
+    state: stopped
+  when: service_status.stat.exists
+  register: service_stopped
+
+- name: "Removing MarkLogic"
+  yum:
+    name: MarkLogic
+    state: absent
+
+- name: "Removing MarkLogic config file"
+  file:
+    path: /etc/marklogic.conf
+    state: absent
+
+- name: "Deleting xstore user"
+  user:
+    name: xstore
+    state: absent
+
+- name: "Clearing /xstore directory"
+  become: yes
+  shell: |
+    [ -d "/xstore" ] 
+    rm -Rf /xstore/*
+
+- name: "Rebooting host"
+  reboot: 

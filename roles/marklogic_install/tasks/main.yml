@@ -1,0 +1,89 @@
+- name: "Check installed MarkLogic version"
+  command: 
+    cmd: 'rpm -qa MarkLogic --queryformat %{VERSION}'
+    warn: no
+  register: version
+  changed_when: False
+
+- name: "Output MarkLogic version"
+  debug:
+    var: version.stdout
+
+# - name: "Stop playbook for host if MarkLogic is installed"
+#   meta: end_host
+#   when: version is defined
+
+- name: "Fail the Playbook if ML is installed"
+  fail: 
+    msg: "MarkLogic is already installed"
+  when: version is defined
+
+- name: "Creating xstore user"
+  shell: id -u xstore &>/dev/null || useradd xstore
+
+- name: "Creating /xstore directory"
+  file:
+    path: /xstore
+    state: directory
+    owner: xstore
+    group: xstore
+    mode: '0755'
+
+- name: "Clearing /xstore directory"
+  become: yes
+  shell: |
+    [ -d "/xstore" ] 
+    rm -Rf /xstore/*
+
+- name: "Copying MarkLogic RPMs for RHEL6"
+  copy: 
+    src: /data/files/MarkLogic-RHEL6-8.0-9.1.x86_64.rpm
+    dest: /tmp/MarkLogic-RHEL6-8.0-9.1.x86_64.rpm 
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '6'
+
+- name: "Copying MarkLogic RPMs for RHEL7"
+  copy: 
+    src: /data/files/MarkLogic-RHEL7-8.0-9.1.x86_64.rpm
+    dest: /tmp/MarkLogic-RHEL7-8.0-9.1.x86_64.rpm 
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
+    
+- name: "Copying ML cluster scripts"
+  copy: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: '0755'
+  with_items:
+    - { src: 'initialise_marklogic_cluster.sh', dest: '/tmp/initialise_marklogic_cluster.sh' }
+    - { src: 'add_marklogic_host.sh', dest: '/tmp/add_marklogic_host.sh' }
+
+- name: "Installing MarkLogic for RHEL 6"
+  yum:
+    name: /tmp/MarkLogic-RHEL6-8.0-9.1.x86_64.rpm
+    state: present
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '6'
+
+- name: "Installing MarkLogic for RHEL 7"
+  yum:
+    name: /tmp/MarkLogic-RHEL7-8.0-9.1.x86_64.rpm
+    state: present
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
+
+- name: "Copying MarkLogic config"
+  copy: 
+    src: marklogic.conf
+    dest: /etc/marklogic.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "Starting MarkLogic"
+  become: yes
+  shell: /etc/init.d/MarkLogic start

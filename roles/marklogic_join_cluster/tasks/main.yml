@@ -1,0 +1,3 @@
+- name: "Joining MarkLogic cluster"
+  become: yes
+  shell: /tmp/add_marklogic_host.sh ml515.back.test.bc.local localhost
