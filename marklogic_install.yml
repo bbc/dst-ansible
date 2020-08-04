@@ -7,9 +7,9 @@
 - hosts: [mlmaster]
   become: true
   roles:
-  - create_cluster
+  - marklogic_create_cluster
 
 - hosts: [mlslave]
   become: true
   roles:
-  - join_cluster
+  - marklogic_join_cluster
