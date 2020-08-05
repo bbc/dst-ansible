@@ -3,7 +3,6 @@
     cmd: 'rpm -qa MarkLogic --queryformat %{VERSION}'
     warn: no
   register: version
-  when: version.stdout != ""
   changed_when: False
 
 - name: "Output MarkLogic version"
@@ -17,7 +16,7 @@
 - name: "Fail the Playbook if ML is installed"
   fail: 
     msg: "MarkLogic is already installed"
-  when: version is defined
+  when: (version is defined) and (version|length > 0)
 
 - name: "Creating xstore user"
   shell: id -u xstore &>/dev/null || useradd xstore
