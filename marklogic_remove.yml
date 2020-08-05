@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "{{ ml_hosts }}"
   become: true
   roles:
   - marklogic_remove
