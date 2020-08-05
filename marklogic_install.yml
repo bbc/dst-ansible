@@ -4,12 +4,12 @@
   roles:
   - marklogic_install
 
-- hosts: {{ ml_master }}
+- hosts: "{{ ml_master }}"
   become: true
   roles:
   - marklogic_create_cluster
 
-- hosts: marklogic_all:!{{ ml_master }}
+- hosts: marklogic_all:!"{{ ml_master }}"
   become: true
   roles:
   - marklogic_join_cluster
