@@ -16,7 +16,8 @@
 - name: "Fail the Playbook if ML is installed"
   fail: 
     msg: "MarkLogic is already installed"
-  when: (version is defined) and (version|length > 0)
+  when: not version
+  #when: (version is defined) and (version|length > 0)
 
 - name: "Creating xstore user"
   shell: id -u xstore &>/dev/null || useradd xstore
