@@ -3,6 +3,7 @@
     cmd: 'rpm -qa MarkLogic --queryformat %{VERSION}'
     warn: no
   register: version
+  when: version.stdout != ""
   changed_when: False
 
 - name: "Output MarkLogic version"
