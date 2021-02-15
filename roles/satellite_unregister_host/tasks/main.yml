@@ -1,7 +1,26 @@
 ---
-- name: Unregister and clean subscription-manager config
-  shell: |
-    subscription-manager unregister
-    subscription-manager clean
-    yum erase katello-ca-consumer\*
-    yum clean all
+# - name: Unregister and clean subscription-manager config
+#   shell: |
+#     subscription-manager unregister
+#     subscription-manager clean
+#     yum erase katello-ca-consumer\*
+#     yum clean all
+
+- name: Unregister host
+  redhat_subscription:
+    state: absent
+
+- name: subscription-manager-clean
+  command: subscription-manager clean
+  args:
+    warn: no
+
+- name: Remove the Satellite katello-ca-consumer package
+  yum:
+    name: katello-ca-consumer\*
+    state: absent
+
+- name: yum-clean-all
+  command: yum clean all
+  args:
+    warn: no
