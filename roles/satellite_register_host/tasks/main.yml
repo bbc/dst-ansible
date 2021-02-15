@@ -12,7 +12,7 @@
 - name: Download Satellite Capsule config
   uri:
     url: https://{{ sat_capsule }}/pub/katello-ca-consumer-latest.noarch.rpm
-    dest: ./katello-ca-consumer-latest.noarch.rpm
+    # dest: ./katello-ca-consumer-latest.noarch.rpm
 
 - name: Install Satellite Capsule katello-ca config
   yum:
