@@ -1,0 +1,4 @@
+- hosts: "{{ hostname }}"
+  become: true
+  roles:
+  - satellite_register_new_host
