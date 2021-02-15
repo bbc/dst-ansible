@@ -1,3 +1,4 @@
-- become: true
+- hosts: all
+  become: true
   roles:
   - satellite_unregister_host
