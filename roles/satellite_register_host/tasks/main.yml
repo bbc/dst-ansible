@@ -13,11 +13,11 @@
   uri:
     url: https://{{ sat_capsule }}/pub/katello-ca-consumer-latest.noarch.rpm
     validate_certs: no
-    dest: .
+    dest: /tmp/
 
 - name: Install Satellite Capsule katello-ca config
   yum:
-    name: ./katello-ca-consumer-latest.noarch.rpm
+    name: /tmp/katello-ca-consumer-latest.noarch.rpm
     state: present
 
 - name: Register host with activationkey
