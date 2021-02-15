@@ -15,15 +15,15 @@
   args:
     warn: no
 
-- name: Remove the Satellite katello-ca-consumer package
-  command: yum erase katello-ca-consumer\*
-  args:
-    warn: no
-
 # - name: Remove the Satellite katello-ca-consumer package
-#   yum:
-#     name: katello-ca-consumer\*
-#     state: absent
+#   command: yum erase katello-ca-consumer\*
+#   args:
+#     warn: no
+
+- name: Remove the Satellite katello-ca-consumer package
+  yum:
+    name: katello-ca-consumer-rhsat.bbc.co.uk.noarch
+    state: absent
 
 - name: yum-clean-all
   command: yum clean all
