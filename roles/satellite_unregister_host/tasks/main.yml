@@ -1,0 +1,7 @@
+---
+- name: Unregister and clean subscription-manager config
+  shell: |
+    subscription-manager unregister
+    subscription-manager clean
+    yum erase katello-ca-consumer\*
+    yum clean all

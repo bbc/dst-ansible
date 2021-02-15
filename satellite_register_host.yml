@@ -1,4 +1,4 @@
 - hosts: "{{ hostname }}"
   become: true
   roles:
-  - satellite_migrate_host
+  - satellite_register_host
