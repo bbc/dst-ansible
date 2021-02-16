@@ -16,7 +16,7 @@
     state: present
 
 - name: Set Satellite config to no_proxy
-  cmd: subscription-manager config --server.no_proxy=*
+  command: subscription-manager config --server.no_proxy=*
   args:
     warn: no
 
