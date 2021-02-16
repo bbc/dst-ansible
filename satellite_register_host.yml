@@ -1,4 +1,4 @@
-- hosts: "{{ host_group }}"
+- hosts: "{{ hostname }}"
   become: true
   roles:
   - satellite_register_host

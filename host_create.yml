@@ -1,3 +1,3 @@
 - hosts: "awx"
   roles:
-  - host-create
+  - host_create

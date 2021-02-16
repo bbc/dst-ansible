@@ -1,0 +1,6 @@
+---
+- name: Delete Host from Inventory
+  tower_host:
+    inventory: "{{ dst_inventory }}"
+    name: "{{ hostname }}"
+    state: absent
