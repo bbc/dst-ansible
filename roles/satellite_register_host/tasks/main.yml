@@ -21,7 +21,7 @@
     activationkey: "{{ sat_key }}"
     org_id: "{{ sat_org }}"
 
-- name: Remove file
+- name: Remove rpm file
   file:
     path: /tmp/katello-ca-consumer-latest.noarch.rpm
     state: absent

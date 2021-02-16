@@ -12,9 +12,3 @@
   yum:
     name: katello-ca-consumer-rhsat.bbc.co.uk.noarch
     state: absent
-
-# - name: yum-clean-all
-#   command: yum clean all
-#   args:
-#     warn: no
-#   ignore_errors: yes
