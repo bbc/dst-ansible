@@ -1,9 +1,4 @@
 ---
-# - name: Download and install Satellite Capsule config
-#   shell: |
-#     curl --insecure --output katello-ca-consumer-latest.noarch.rpm https://"{{ sat_capsule }}"/pub/katello-ca-consumer-latest.noarch.rpm
-#     yum localinstall -y katello-ca-consumer-latest.noarch.rpm
-
 # - name: Register host to Satellite Capsule
 #   shell: |
 #     subscription-manager config --server.no_proxy=*
@@ -19,6 +14,11 @@
   yum:
     name: /tmp/katello-ca-consumer-latest.noarch.rpm
     state: present
+
+- name: Set Satellite config to no_proxy
+  cmd: subscription-manager config --server.no_proxy=*
+  args:
+    warn: no
 
 - name: Register host with activationkey
   redhat_subscription:

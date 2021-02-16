@@ -17,3 +17,4 @@
   command: yum clean all
   args:
     warn: no
+  ignore_errors: yes
