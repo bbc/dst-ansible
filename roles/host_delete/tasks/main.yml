@@ -1,7 +1,7 @@
 ---
 - name: Delete Host from Inventory
-  gather_facts: no
   tower_host:
     inventory: "{{ dst_inventory }}"
     name: "{{ hostname }}"
     state: absent
+    gather_facts: no
