@@ -1,4 +1,10 @@
 ---
+- name: Remove rpm file
+  file:
+    path: /tmp/katello-ca-consumer-latest.noarch.rpm
+    state: absent
+  ignore_errors: yes
+
 - name: Download Satellite Capsule config
   uri:
     url: https://{{ sat_capsule }}/pub/katello-ca-consumer-latest.noarch.rpm
@@ -20,8 +26,3 @@
     state: present
     activationkey: "{{ sat_key }}"
     org_id: "{{ sat_org }}"
-
-- name: Remove rpm file
-  file:
-    path: /tmp/katello-ca-consumer-latest.noarch.rpm
-    state: absent
