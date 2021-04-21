@@ -1,3 +1,7 @@
 ---
 - name: Run puppet agent and fail if anything goes wrong
-  puppet:
+  hosts: all
+  
+  tasks:
+  - name: Run puppet agent
+    puppet:
