@@ -26,3 +26,15 @@ DST Ansible playbooks
 - Removes "xstore" user
 - Clears `/xstore` directory
 - Reboots host
+
+*run_puppet_agent.yml*
+- Forces puppet run on selected host(s)
+- Equivalent of `puppet agent -t` command
+
+*satellite_register_host.yml*
+- Registers host(s) to Satellite Capsule server using Activation Key
+
+*satellite_unregister_host.yml*
+- Unregisters host(s) from current Satellite server
+- Cleans `subscription-manager` config
+- Uninstalls `katello-ca-consumer` rpm
