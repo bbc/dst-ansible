@@ -1,0 +1,3 @@
+---
+satellite6_want_hostcollections: True
+host_filters: 'host_collection=dst_managed'
