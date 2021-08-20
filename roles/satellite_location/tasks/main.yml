@@ -1,0 +1,8 @@
+---
+- name: Assign Satellite Location to "Reith"
+  redhat.satellite.host:
+    username: "{{ sat-un }}"
+    password: "{{ sat-pw }}"
+    server_url: "https://rdhtsat.dev.tools.bbc.co.uk/"
+    name: "{{ hostname }}"
+    location: "Reith"
