@@ -4,6 +4,6 @@
   theforeman.foreman.host:
     username: "{{ sat_un }}"
     password: "{{ sat_pw }}"
-    server_url: "https://rdhtsat.dev.tools.bbc.co.uk/"
+    server_url: "https://rhsatsr101.back.mgmt.telhc.local"
     name: "{{ hostname }}"
     location: "Reith"
