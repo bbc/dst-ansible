@@ -1,6 +1,7 @@
 ---
 - name: Assign Satellite Location to "Reith"
-  redhat.satellite.host:
+  # redhat.satellite.host:
+  theforeman.foreman.host:
     username: "{{ sat_un }}"
     password: "{{ sat_pw }}"
     server_url: "https://rdhtsat.dev.tools.bbc.co.uk/"
