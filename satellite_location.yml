@@ -2,4 +2,3 @@
   become: true
   roles:
   - satellite_location
-  delegate_to: 127.0.0.1
