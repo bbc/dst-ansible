@@ -4,5 +4,5 @@
     username: "{{ sat_un }}"
     password: "{{ sat_pw }}"
     server_url: "https://rdhtsat.dev.tools.bbc.co.uk/"
-    name: "{{ tgt_hostname }}"
+    name: "{{ hostname }}"
     location: "Reith"
