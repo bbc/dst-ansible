@@ -1,4 +1,5 @@
 ---
 collections:
 # Red Hat Satellite
-- redhat.satellite
+- name: redhat.satellite
+  source: https://console.redhat.com/api/automation-hub/
