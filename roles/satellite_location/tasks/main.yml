@@ -7,4 +7,3 @@
     server_url: "https://rdhtsat.dev.tools.bbc.co.uk/"
     name: "{{ hostname }}"
     location: "Reith"
-  delegate_to: localhost
