@@ -1,4 +1,4 @@
-- hosts: "{{ hostname }}"
+- hosts: awx
   become: true
   roles:
   - satellite_location

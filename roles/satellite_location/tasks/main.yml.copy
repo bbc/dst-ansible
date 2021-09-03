@@ -5,5 +5,5 @@
     username: "{{ sat_un }}"
     password: "{{ sat_pw }}"
     server_url: "https://rhsatsr101.back.mgmt.telhc.local"
-    name: "{{ tgt_hostname }}"
+    name: "{{ hostname }}"
     location: "Reith"
