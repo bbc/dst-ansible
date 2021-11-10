@@ -1,0 +1,20 @@
+---
+- name: Provision new host
+  hosts: all
+  tasks:
+  - name: Set content in /etc/motd 
+    copy:
+      content: Authorized use only!
+      dest: /etc/motd
+      mode: 644
+      owner: root
+      group: root
+  - name: Create brian user account
+    user:
+      name: brian
+      uid: 10000
+      state: present
+  - name: Install tmux package
+    yum:
+      name: tmux
+      state: present
