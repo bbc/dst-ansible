@@ -4,7 +4,7 @@
   tasks:
   - name: Set content in /etc/motd 
     copy:
-      content: Authorized use only!
+      content: "Authorized use only! Hello User >>> "
       dest: /etc/motd
       mode: 644
       owner: root
@@ -13,8 +13,8 @@
     user:
       name: brian
       uid: 10000
-      state: absent
+      state: present
   - name: Install tmux package
     yum:
       name: tmux
-      state: absent
+      state: present
