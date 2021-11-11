@@ -13,8 +13,8 @@
     user:
       name: brian
       uid: 10000
-      state: present
+      state: absent
   - name: Install tmux package
     yum:
       name: tmux
-      state: present
+      state: absent
