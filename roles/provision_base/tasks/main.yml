@@ -10,10 +10,10 @@
     state: present
   when: ansible_virtualization_type == "virtualbox"
 
-- name: "update"
-  yum:
-    name: "*"
-    state: latest
+# - name: "update"
+#   yum:
+#     name: "*"
+#     state: latest
 
 - name: "install ntp"
   yum:

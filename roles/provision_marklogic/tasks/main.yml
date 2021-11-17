@@ -1,15 +1,21 @@
 ---
-  - name: Create xstore user
-    user:
-      name: xstore
-      uid: 8002
-      group: xstore
-      state: present
+- name: Create xstore group
+  group:
+    state: present
+    name: "xstore"
+    gid: 8002
 
-  - name: "Create /xstore directory"
-    file:
-      path: /xstore
-      state: directory
-      owner: xstore
-      group: xstore
-      mode: '0755'
+- name: Create xstore user
+  user:
+    name: xstore
+    uid: 8002
+    group: xstore
+    state: present
+
+- name: "Create /xstore directory"
+  file:
+    path: /xstore
+    state: directory
+    owner: xstore
+    group: xstore
+    mode: '0755'
