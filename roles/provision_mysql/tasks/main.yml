@@ -1,0 +1,15 @@
+---
+  - name: Create mysql user
+    user:
+      name: mysql
+      uid: 8004
+      group: mysql
+      state: present
+
+  - name: "Create /data/mysql directory"
+    file:
+      path: /data/mysql
+      state: directory
+      owner: mysql
+      group: mysql
+      mode: '0755'
