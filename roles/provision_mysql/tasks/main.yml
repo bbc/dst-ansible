@@ -1,4 +1,10 @@
 ---
+- name: Create mysql group
+  group:
+    state: present
+    name: "mysql"
+    gid: 8004
+
 - name: Create mysql user
   user:
     name: mysql
