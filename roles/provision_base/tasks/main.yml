@@ -1,0 +1,33 @@
+---
+- name: "hosts file"
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: "VMware tools"
+  yum:
+    name: open-vm-tools
+    state: present
+  when: ansible_virtualization_type == "virtualbox"
+
+# - name: "update"
+#   yum:
+#     name: "*"
+#     state: latest
+
+- name: "install ntp"
+  yum:
+    name: ntp
+    state: installed
+
+- name: enable ntpd
+  service:
+    name:  ntpd
+    enabled: yes
+
+- name: ntpd configuration
+  template:
+    src: ntp.j2
+    dest: /etc/ntp.conf
+  notify:
+    - restart ntpd

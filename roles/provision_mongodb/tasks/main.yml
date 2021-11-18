@@ -1,0 +1,21 @@
+---
+- name: Create mongod group
+  group:
+    state: present
+    name: "mongod"
+    gid: 8003
+
+- name: Create mongod user
+  user:
+    name: mongod
+    uid: 8003
+    group: mongod
+    state: present
+
+- name: "Create /data/mongodb directory"
+  file:
+    path: /data/mongodb
+    state: directory
+    owner: mongod
+    group: mongod
+    mode: '0755'
