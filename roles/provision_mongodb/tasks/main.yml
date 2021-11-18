@@ -1,4 +1,10 @@
 ---
+- name: Create mongod group
+  group:
+    state: present
+    name: "mongod"
+    gid: 8003
+
 - name: Create mongod user
   user:
     name: mongod
