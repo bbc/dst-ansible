@@ -8,3 +8,7 @@
   service:
     name: ntpd
     state: restarted
+- name: restart chronyd
+  service:
+    name: chronyd
+    state: restarted
