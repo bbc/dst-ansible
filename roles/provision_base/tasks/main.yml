@@ -19,11 +19,13 @@
   yum:
     name: ntp
     state: installed
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
 
 - name: enable ntpd
   service:
     name:  ntpd
     enabled: yes
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
 
 - name: ntpd configuration
   template:
@@ -31,3 +33,24 @@
     dest: /etc/ntp.conf
   notify:
     - restart ntpd
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+
+- name: "install chrony"
+  yum:
+    name: chrony
+    state: installed
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+
+- name: enable chronyd
+  service:
+    name:  chronyd
+    enabled: yes
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+
+- name: chronyd configuration
+  template:
+    src: chrony.j2
+    dest: /etc/chrony.conf
+  notify:
+    - restart chronyd
+  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
