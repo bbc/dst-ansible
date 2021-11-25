@@ -12,8 +12,8 @@
 ################################################################
 
 BOOTSTRAP_HOST="localhost"
-USER="admin"
-PASS="password"
+USER="{{ marklogic_user }}"
+PASS="{{ marklogic_pass }}"
 AUTH_MODE="anyauth"
 SEC_REALM="public"
 N_RETRY=5

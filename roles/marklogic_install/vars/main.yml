@@ -1,0 +1,3 @@
+---
+  marklogic_user: "{{ username }}"
+  marklogic_pass: "{{ password }}"
