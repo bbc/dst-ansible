@@ -15,8 +15,8 @@
 ################################################################
 
 USER="admin"
-PASS="password"
-AUTH_MODE="anyauth"
+USER="{{ marklogic_user }}"
+PASS="{{ marklogic_pass }}"
 N_RETRY=5
 RETRY_INTERVAL=10
 
