@@ -6,9 +6,9 @@
   debug:
     msg: "{{ ansible_default_ipv4.address }}"
 
-- name: Print number cpus
-  debug:
-    msg: "{{ ansible_processor_nproc }}"
+# - name: Print number cpus
+#   debug:
+#     msg: "{{ ansible_processor_nproc }}"
 
 - name: Print disk info
   debug:
