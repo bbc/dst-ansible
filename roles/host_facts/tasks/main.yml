@@ -8,7 +8,7 @@
 
 - name: Print memory info
   debug:
-    msg: "{{ ansible_memory_mb.real.total }}"
+    msg: "{{ ansible_memtotal_mb }}"
 
 # - name: Print number cpus
 #   debug:
