@@ -10,13 +10,13 @@
   debug:
     msg: "{{ ansible_memtotal_mb }}"
 
-# - name: Print number cpus
-#   debug:
-#     msg: "{{ ansible_processor_nproc }}"
-
-- name: Print disk info
+- name: Print number cpus
   debug:
-    msg: "{{ item.size_total }}"
-    loop: "{{ ansible_mounts }}"
+    msg: "{{ ansible_processor_vcpus }}"
+
+# - name: Print disk info
+#   debug:
+#     msg: "{{ item.size_total }}"
+#     loop: "{{ ansible_mounts }}"
     # msg: "{{ ansible_facts['mounts'][0]['size_total'] }}"    
 
