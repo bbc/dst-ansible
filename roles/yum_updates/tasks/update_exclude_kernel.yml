@@ -1,0 +1,5 @@
+- name: update all packages, excluding kernel
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel*
