@@ -1,17 +1,17 @@
 - name: Print hostname
-  ansible.builtin.debug:
+  debug:
     msg: "{{ ansible_facts['nodename'] }}"
   
 - name: Print IP info
-  ansible.builtin.debug:
+  debug:
     msg: "{{ ansible_default_ipv4.address }}"
 
-- name: Print cpu count
-  ansible.builtin.debug:
+- name: Print number cpus
+  debug:
     msg: "{{ ansible_processor_nproc }}"
 
 - name: Print disk info
-  ansible.builtin.debug:
-    # msg: "{{ ansible_facts['mounts'][0]['size_total'] }}"
+  debug:
     msg: "{{ item.size_total }}"
     loop: "{{ ansible_mounts }}"
+    # msg: "{{ ansible_facts['mounts'][0]['size_total'] }}"    
