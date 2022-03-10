@@ -1,6 +1,6 @@
 - name: Print hostname
   debug:
-    msg: "{{ ansible_facts['nodename'] }}"
+    msg: "{{ ansible_hostname}}"
   
 - name: Print IP info
   debug:
