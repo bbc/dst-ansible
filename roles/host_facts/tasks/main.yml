@@ -6,6 +6,10 @@
   debug:
     msg: "{{ ansible_default_ipv4.address }}"
 
+- name: Print memory info
+  debug:
+    msg: "{{ ansible_memory_mb.real.total }}"
+
 # - name: Print number cpus
 #   debug:
 #     msg: "{{ ansible_processor_nproc }}"
@@ -15,3 +19,4 @@
     msg: "{{ item.size_total }}"
     loop: "{{ ansible_mounts }}"
     # msg: "{{ ansible_facts['mounts'][0]['size_total'] }}"    
+
