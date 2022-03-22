@@ -1,0 +1,31 @@
+---
+# defaults file for sshd
+sshd_protocol: 2
+sshd_permit_root_login: 'yes'
+sshd_x11_forwarding: 'yes'
+sshd_log_level: INFO
+
+##color prompt changes
+color_prompt_target_file: /etc/profile.d/colorprompt.sh
+color_prompt_state: present
+color_prompt_addon: ""
+color_prompt_schema: none
+color_prompt_schemas:
+  none:
+    fg: BIGreen
+    bg: UWhite
+  int:
+    fg: BIBlue
+    bg: UWhite
+  test:
+    fg: BCyan
+    bg: UWhite
+  stage:
+    fg: BYellow
+    bg: UWhite
+  live:
+    fg: BRed
+    bg: UWhite
+  mgmt:
+    fg: BBlack
+    bg: UWhite

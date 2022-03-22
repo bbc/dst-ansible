@@ -1,0 +1,42 @@
+# {{ ansible_managed }}
+
+Listenaddress {{ ansible_default_ipv4['address'] }}
+Protocol 2
+
+SyslogFacility AUTHPRIV
+
+PermitEmptyPasswords no
+PasswordAuthentication no
+PermitRootLogin no
+
+ChallengeResponseAuthentication no
+
+# GSSAPI options
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+UsePAM yes
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL
+{% if ansible_distribution_major_version == '7' %}
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+{% endif %}
+
+X11Forwarding no
+UseDNS no
+TCPKeepAlive yes
+{% if ansible_distribution_major_version != '8' %}
+UsePrivilegeSeparation yes
+{% endif %}
+Banner  /etc/banner 
+
+{% if ansible_distribution_major_version == '8' %}
+PrintMotd no
+{% endif %}
+
+# override default of no subsystems
+Subsystem       sftp    /usr/libexec/openssh/sftp-server

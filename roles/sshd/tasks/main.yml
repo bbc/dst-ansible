@@ -1,0 +1,31 @@
+---
+# tasks file for sshd
+- name: "sshd_config file"
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+  notify:
+    - restart sshd
+  tags:
+    - sshd_config
+- name: "sshd banner"
+  copy:
+    src: banner
+    dest: /etc/banner
+  notify:
+    - restart sshd
+  tags:
+    - sshd_config
+- name: "BBC MOTD"
+  template:
+    src: motd_backup_2.j2
+    dest: /etc/motd
+  tags:
+    - bbc_motd
+  notify:
+    - restart sshd
+- name: Add color prompt script
+  template: src=colorprompt.sh.j2 dest={{ color_prompt_target_file }} owner=root group=root mode=644
+  when: color_prompt_state is defined and color_prompt_state == "present"
+  tags:
+    - bbc_motd
