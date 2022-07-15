@@ -92,11 +92,16 @@
       body_format: json
     register: notify
 
+  # - name: Install the latest packages (RHEL7)
+  #   yum:
+  #     name: "{{ item }}"
+  #     state: latest
+  #   with_items: "{{ result.json.packages }}"
+
   - name: Install the latest packages (RHEL7)
     yum:
-      name: "{{ item }}"
+      name: "{{ result.json.packages }}"
       state: latest
-    with_items: "{{ result.json.packages }}"
 
   - name: Print notify output
     ansible.builtin.debug: 
