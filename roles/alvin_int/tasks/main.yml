@@ -103,6 +103,7 @@
       name: "{{ result.json.packages }}"
       state: latest
       skip_broken: yes
+    ignore_errors: true
 
   - name: Print notify output
     ansible.builtin.debug: 
