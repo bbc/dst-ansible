@@ -102,6 +102,7 @@
     yum:
       name: "{{ result.json.packages }}"
       state: latest
+      skip_broken: yes
 
   - name: Print notify output
     ansible.builtin.debug: 
