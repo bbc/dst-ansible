@@ -1,0 +1,113 @@
+---
+# tasks file for alvin
+  # - name: "BBC EPEL repo"
+  #   yum_repository:
+  #     name: bbc-epel
+  #     description: bbc epel repos
+  #     baseurl: https://yum.bbc.co.uk/epel/$releasever
+  #     enabled: 1
+  #     gpgcheck: 0
+  #     mirrorlist_expire: 1
+  #     proxy: http://www-cache.reith.bbc.co.uk:80/
+  #     sslclientcert: /etc/pki/repository.client.forge.pem
+  #     sslclientkey: /etc/pki/repository.client.forge.key
+  #   tags: bbc_epel_repo 
+
+  # - name: "BBC INT repo"
+  #   yum_repository:
+  #     name: bbc-int
+  #     description: BBC Int Repo
+  #     # baseurl: https://yum.bbc.co.uk/live/$releasever
+  #     mirrorlist: https://repository.api.bbci.co.uk/platform-el7/revisions/int
+  #     enabled: 1
+  #     gpgcheck: 0
+  #     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-platform-int
+  #     metadata_expire: 1
+  #     proxy: http://www-cache.reith.bbc.co.uk:80/
+  #     sslclientcert: /etc/pki/repository.client.forge.pem
+  #     sslclientkey: /etc/pki/repository.client.forge.key
+  #   tags: bbc_int_repo
+
+  # - name: "BBC LIVE repo"
+  #   yum_repository:
+  #     name: bbc-live
+  #     description: bbc live repos
+  #     baseurl: https://yum.bbc.co.uk/live/$releasever
+  #     enabled: 1
+  #     gpgcheck: 0
+  #     metadata_expire: 1
+  #     proxy: http://www-cache.reith.bbc.co.uk:80/
+  #     sslclientcert: /etc/pki/repository.client.forge.pem
+  #     sslclientkey: /etc/pki/repository.client.forge.key
+  #   tags: bbc_live_repo
+
+  # - name: "copy repo cert"
+  #   copy:
+  #     src: repository.client.forge.pem
+  #     dest: /etc/pki/repository.client.forge.pem
+  #   tags:
+  #     update_certs_repo
+
+  # - name: "copy repo key"
+  #   copy:
+  #     src: repository.client.forge.key
+  #     dest: /etc/pki/repository.client.forge.key
+  #   tags:
+  #     update_certs_repo
+
+  # - name: "copy RPM GPG key"
+  #   copy:
+  #     src: RPM-GPG-KEY-platform-int
+  #     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-platform-int
+  #   tags:
+  #     update_gpg_key
+
+  # - name: Copy developer cert
+  #   copy:
+  #     src: /Users/bentob03/certs/developer.pem
+  #     dest: /root/developer.pem
+  #     owner: root
+  #     group: root
+  #     mode: '0400'
+
+  - name: Repo packages check
+    uri:
+      url: https://repo.dev.bbc.co.uk/tools/alvin-products-config/db/int/default.json
+      client_cert: /etc/pki/alvin.pem
+      validate_certs: no
+      method: GET
+      return_content: yes
+      status_code: 200
+      body_format: json
+    register: result
+
+  - name: Repo notifications check
+    uri:
+      url: https://repo.dev.bbc.co.uk/tools/alvin-products-config/db/int/.notifications.conf
+      client_cert: /root/developer.pem
+      validate_certs: no
+      method: GET
+      return_content: yes
+      status_code: 200
+      body_format: json
+    register: notify
+
+  - name: Install the latest packages (RHEL7)
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items: "{{ result.json.packages }}"
+
+  - name: Print notify output
+    ansible.builtin.debug: 
+      var: notify
+
+  # - name: Run the notifications commands
+  #   command: "{{ item.command }}"
+  #   with_items: "{{ notify.json.scripts }}"
+
+  # - name: Print last modified date element
+  #   debug:
+  #     var: result.last_modified
+
+
