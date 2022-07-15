@@ -84,7 +84,7 @@
   - name: Repo notifications check
     uri:
       url: https://repo.dev.bbc.co.uk/tools/alvin-products-config/db/int/.notifications.conf
-      client_cert: /root/developer.pem
+      client_cert: /etc/pki/alvin.pem
       validate_certs: no
       method: GET
       return_content: yes
