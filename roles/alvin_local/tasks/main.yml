@@ -9,7 +9,7 @@
       enabled: 1
       gpgcheck: 0
       mirrorlist_expire: 1
-      proxy: http://www-cache.reith.bbc.co.uk:80/
+      # proxy: http://www-cache.reith.bbc.co.uk:80/
       sslclientcert: /etc/pki/repository.client.forge.pem
       sslclientkey: /etc/pki/repository.client.forge.key
     tags: bbc_epel_repo 
@@ -22,7 +22,7 @@
       enabled: 1
       gpgcheck: 0
       metadata_expire: 1
-      proxy: http://www-cache.reith.bbc.co.uk:80/
+      # proxy: http://www-cache.reith.bbc.co.uk:80/
       sslclientcert: /etc/pki/repository.client.forge.pem
       sslclientkey: /etc/pki/repository.client.forge.key
     tags: bbc_live_repo
