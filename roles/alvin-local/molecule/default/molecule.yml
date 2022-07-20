@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  # - name: centos8
+  #   image: docker.io/pycontribs/centos:8
+  #   pre_build_image: true
+  - name: centos7
+    image: docker.io/percygrunwald/docker-centos7-ansible:latest
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro 
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

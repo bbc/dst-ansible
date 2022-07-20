@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include alvin-local"
+      include_role:
+        name: "alvin-local"

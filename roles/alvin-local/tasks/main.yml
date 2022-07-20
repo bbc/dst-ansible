@@ -1,0 +1,75 @@
+---
+# Localised version of JSON file
+
+  - name: "BBC EPEL repo"
+    yum_repository:
+      name: bbc-epel
+      description: bbc epel repos
+      baseurl: https://yum.bbc.co.uk/epel/$releasever
+      enabled: 1
+      gpgcheck: 0
+      mirrorlist_expire: 1
+      proxy: http://www-cache.reith.bbc.co.uk:80/
+      sslclientcert: /etc/pki/repository.client.forge.pem
+      sslclientkey: /etc/pki/repository.client.forge.key
+    tags: bbc_epel_repo 
+
+  - name: "BBC LIVE repo"
+    yum_repository:
+      name: bbc-live
+      description: bbc live repos
+      baseurl: https://yum.bbc.co.uk/live/$releasever
+      enabled: 1
+      gpgcheck: 0
+      metadata_expire: 1
+      proxy: http://www-cache.reith.bbc.co.uk:80/
+      sslclientcert: /etc/pki/repository.client.forge.pem
+      sslclientkey: /etc/pki/repository.client.forge.key
+    tags: bbc_live_repo
+
+  - name: "copy repo cert"
+    copy:
+      src: repository.client.forge.pem
+      dest: /etc/pki/repository.client.forge.pem
+    tags:
+      update_certs_repo
+
+  - name: "copy repo key"
+    copy:
+      src: repository.client.forge.key
+      dest: /etc/pki/repository.client.forge.key
+    tags:
+      update_certs_repo
+
+  - name: "copy RPM GPG key"
+    copy:
+      src: RPM-GPG-KEY-platform-int
+      dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-platform-int
+    tags:
+      update_gpg_key
+
+  - name: "copy local json file"
+    copy:
+      src: alvin-local.json
+      dest: /tmp/alvin-local.json
+
+  - name: Read local json file
+    command: "cat /tmp/alvin-local.json"
+    register: result
+    # vars:
+    #  result: "{{ lookup('file','/tmp/alvin-local.json') | from_json }}"
+
+  - name: Save the Json data to a Variable as a Fact
+    set_fact:
+      jsondata: "{{ result.stdout | from_json }}"
+
+  - name: Print result output
+    ansible.builtin.debug: 
+      var: jsondata
+
+  - name: Install the latest packages (RHEL7)
+    yum:
+      name: "{{ jsondata.packages }}"
+      state: latest
+
+

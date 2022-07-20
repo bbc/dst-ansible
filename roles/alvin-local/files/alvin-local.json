@@ -1,0 +1,8 @@
+
+{
+    "packages": [
+        "tree",
+        "bbc-database-mysql-ria",
+        "httpd"
+    ]
+}
